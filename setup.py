@@ -13,7 +13,7 @@ setup(
     url='https://github.com/kai25/docker-command-tool',
     keywords=['Docker', 'cli'],
     entry_points={
-            'console_scripts': ['bagga=docker-command-tool:main'],
+            'console_scripts': ['bagga=docker_command_tool:main'],
     },
     classifiers=[
         "Intended Audience :: Developers",
