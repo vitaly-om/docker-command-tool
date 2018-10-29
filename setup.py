@@ -12,6 +12,9 @@ setup(
     author_email='vitaly.om25@gmail.com',
     url='https://github.com/kai25/docker-command-tool',
     keywords=['Docker', 'cli'],
+    entry_points={
+            'console_scripts': ['bagga=docker-command-tool:main'],
+    },
     classifiers=[
         "Intended Audience :: Developers",
         "Programming Language :: Python",

@@ -76,7 +76,7 @@ def run_command(container_name, command, docker_params):
     )
 
 
-if __name__ == '__main__':
+def main():
     config = get_config()
     load_containers(config)
 
@@ -95,3 +95,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     run_command(command_container, command_desc['cmd'], docker_params)
+
+
+if __name__ == '__main__':
+    main()
