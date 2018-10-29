@@ -1,12 +1,12 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='Docker command tool',
+    name='docker-command-tool',
     packages=find_packages(),
     install_requires=[
         'pyyaml==3.11',
     ],
-    version='0.0.1',
+    version='0.0.2',
     description='Docker command tool',
     author='Vitalii Omelchenko',
     author_email='vitaly.om25@gmail.com',
