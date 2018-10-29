@@ -3,6 +3,8 @@ import sys
 import yaml
 import hashlib
 
+from docker_command_tool.commands_docker import run_command
+
 CONFIG_PATH = 'dct.yaml'
 DOCKERFILE_DIR = '.dockerfiles'
 DOCKER_PARAMS_FLAG = r'dp'
@@ -67,15 +69,6 @@ def build_container(container_name):
     return SUCCESS_CODE
 
 
-def run_command(container_name, command, docker_params):
-    commands = command.split('\n')
-    formatted_commands = ' && '.join(commands)
-    os.system(
-        f'docker run -it --rm {docker_params} {container_name} '
-        f'/bin/bash -c "{formatted_commands}"'
-    )
-
-
 def main():
     config = get_config()
     load_containers(config)
@@ -94,7 +87,12 @@ def main():
         print('Container build is failed')
         sys.exit(1)
 
-    run_command(command_container, command_desc['cmd'], docker_params)
+    run_command(
+        command_container,
+        command_desc['cmd'],
+        command_desc['volumes'],
+        docker_params,
+    )
 
 
 if __name__ == '__main__':

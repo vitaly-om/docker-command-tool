@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='docker-command-tool',
+    name='bagga',
     packages=find_packages(),
     install_requires=[
         'pyyaml==3.11',
