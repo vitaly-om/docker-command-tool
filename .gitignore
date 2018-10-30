@@ -237,3 +237,5 @@ dist/**/*
 
 node_modules
 .pypirc
+.dockerfiles
+dct.yaml
