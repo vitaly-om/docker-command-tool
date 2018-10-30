@@ -90,7 +90,7 @@ def main():
     run_command(
         command_container,
         command_desc['cmd'],
-        command_desc['volumes'],
+        command_desc.get('volumes'),
         docker_params,
     )
 
