@@ -24,5 +24,6 @@ def parse_and_run(config, argv):
         command_container,
         command_desc['cmd'],
         command_desc.get('volumes'),
+        command_desc.get('ports'),
         docker_params,
     )
