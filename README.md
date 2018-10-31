@@ -7,7 +7,7 @@ It makes possible to create some cli in your project (building static, generatin
 Example of using:
 ```sh
 $ pip install bagga
-$ bagga some_come command
+$ bagga some_command
 ```
 
 Example of dct.yaml:
