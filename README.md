@@ -1,8 +1,14 @@
 [![Build Status](https://travis-ci.com/kai25/docker-command-tool.svg?branch=master)](https://travis-ci.com/kai25/docker-command-tool)
 
 # docker-command-tool
+It is simple wrapper around docker.
+It makes possible to create some cli in your project (building static, generate protobuf, etc.).
 
-You need installed pyyaml to run script.
+Example of using:
+```sh
+$ pip install bagga
+$ bagga some_come command
+```
 
 Example of dct.yaml:
 
@@ -21,6 +27,8 @@ containers:
 commands:
   build-js:
     container: static-container
+    volumes:
+      ~/project:/opt/project
     cmd: |
       echo 'building js'
       echo 'ok'
@@ -33,6 +41,8 @@ commands:
 
   run:
     container: app-container
+    ports:
+      5000:5000
     cmd: |
       FLASK_APP=run.py python -m flask run
 ```
@@ -42,13 +52,8 @@ Run:
 $ python dct.py build-css
 ```
 
-If you need to pass params for container running(volumes, port exposing, etc.):
-```sh
-$ python dct.py run dp '-p 5000:5000'
-```
-
 ## bagga params
 Command | Description
 ------- | -----------
 `-d [--docker-commands] '{commands}'` | Add custom docker commands for `docker run`
-`-c [--config] '{commands}'` | Use custom config file instead of `dct.yaml`
+`-c [--config] '{config_path}'` | Use custom config file instead of `dct.yaml`
