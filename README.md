@@ -44,3 +44,9 @@ If you need to pass params for container running(volumes, port exposing, etc.):
 ```sh
 $ python dct.py run dp '-p 5000:5000'
 ```
+
+## bagga params
+Command | Description
+------- | -----------
+`-d [--docker-commands] '{commands}'` | Add custom docker commands for `docker run`
+`-c [--config] '{commands}'` | Use custom config file instead of `dct.yaml`
