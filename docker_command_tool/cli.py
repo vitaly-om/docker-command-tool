@@ -1,10 +1,3 @@
-import argparse
-import sys
-
-from docker_command_tool.commands_docker import run_command
-from docker_command_tool.constants import SUCCESS_CODE
-from docker_command_tool.build import build_container
-
 # You can use this arguments in code by its name casted to python var style
 # '--docker-commands' ==> 'docker_commands'
 #
@@ -14,16 +7,21 @@ ARGUMENTS = {
     '--docker-commands': {
         'short_name': '-d',
         'help': 'Additional docker commands',
+    },
+    '--config': {
+        'short_name': '-c',
+        'help': '',
     }
 }
 
 
-def parse_args(config):
-    parser = argparse.ArgumentParser(
-        prog='bagga',
-        description='BAGGA',
-        usage='bagga <command> [<args>]'
-    )
+def parse_default_args(parser):
+    parser.add_argument('-c', '--config', help='Custom dct config')
+    conf_args, unknown = parser.parse_known_args()
+    return conf_args
+
+
+def parse_args(parser, config):
     subparsers = parser.add_subparsers()
     for name, desc in config['commands'].items():
         parser_append = subparsers.add_parser(
@@ -41,22 +39,3 @@ def parse_args(config):
         parser.print_help()
         exit(1)
     return args
-
-
-def parse_and_run(config):
-    args = parse_args(config)
-    command = args.command
-    command_desc = config['commands'][command]
-    command_container = command_desc['container']
-
-    if build_container(command_container) != SUCCESS_CODE:
-        print('Container build is failed')
-        sys.exit(1)
-
-    run_command(
-        command_container,
-        command_desc['cmd'],
-        command_desc.get('volumes'),
-        command_desc.get('ports'),
-        args.docker_commands,
-    )

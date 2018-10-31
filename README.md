@@ -49,3 +49,4 @@ $ python dct.py run dp '-p 5000:5000'
 Command | Description
 ------- | -----------
 `-d [--docker-commands] '{commands}'` | Add custom docker commands for `docker run`
+`-c [--config] '{commands}'` | Use custom config file instead of `dct.yaml`
