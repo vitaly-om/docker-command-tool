@@ -21,6 +21,10 @@ class Command:
     def add_commands(self, commands):
         self.command += f' /bin/bash -c "{commands}"'
 
+    def add_docker_params(self, params):
+        if params:
+            self.command += f' {params}'
+
 
 def run_command(
         container_name,
@@ -32,7 +36,8 @@ def run_command(
     commands = command.strip('\n').split('\n')
     formatted_commands = ' && '.join(commands)
 
-    docker_command = Command(f'docker run -it --rm {docker_params}')
+    docker_command = Command(f'docker run -it --rm')
+    docker_command.add_docker_params(docker_params)
     docker_command.add_volumes(volumes)
     docker_command.add_ports(ports)
     docker_command.add_name(container_name)

@@ -8,8 +8,7 @@ from docker_command_tool.utils import get_config
 def main():
     config = get_config()
     load_containers(config)
-    argv = sys.argv
-    parse_and_run(config, argv)
+    parse_and_run(config)
 
 
 if __name__ == '__main__':
