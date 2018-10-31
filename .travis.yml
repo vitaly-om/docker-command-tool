@@ -7,6 +7,7 @@ install:
 script:
   - python -m pytest
 after_success: |
+  echo $TRAVIS_BRANCH
   if [[ "$TRAVIS_BRANCH" != "master" ]]; then
     pip install twine
     python setup.py sdist bdist_wheel
