@@ -2,7 +2,7 @@
 
 # docker-command-tool
 It is simple wrapper around docker.
-It makes possible to create some cli in your project (building static, generate protobuf, etc.).
+It makes possible to create some cli in your project (building static, generating protobuf, etc.).
 
 Example of using:
 ```sh
