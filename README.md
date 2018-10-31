@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/kai25/docker-command-tool.svg?branch=master)](https://travis-ci.com/kai25/docker-command-tool)
+
 # docker-command-tool
 
 You need installed pyyaml to run script.
