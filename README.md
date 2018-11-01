@@ -49,7 +49,7 @@ commands:
 
 Run:
 ```sh
-$ python dct.py build-css
+$ bagga build-css
 ```
 
 ## bagga params
