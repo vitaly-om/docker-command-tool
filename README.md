@@ -15,11 +15,11 @@ Example of dct.yaml:
 ```yaml
 containers:
   static-container: |
-    FROM alpine:3.7
+    FROM node:8
     RUN apk add --update nodejs nodejs-npm
 
   app-container: |
-    FROM jfloff/alpine-python
+    FROM python:3.6.6-stretch
     WORKDIR workdir
     COPY server .
     RUN pip install -r requirements
