@@ -16,8 +16,8 @@ Example of dct.yaml:
 containers:
   static-container: |
     FROM node:8
-    RUN apk add --update nodejs nodejs-npm
-
+    RUN echo 'some actions'
+    
   app-container: |
     FROM python:3.6.6-stretch
     WORKDIR workdir
