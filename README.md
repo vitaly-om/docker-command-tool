@@ -28,7 +28,7 @@ commands:
   build-js:
     container: static-container
     volumes:
-      ~/project:/opt/project
+      $(pwd):/opt/project
     cmd: |
       echo 'building js'
       echo 'ok'
