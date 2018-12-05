@@ -12,15 +12,11 @@ class Command:
     def add_name(self, name):
         self.command += f' {name}'
 
-    def add_volumes(self, volumes):
-        if volumes:
-            for volume in volumes.split(' '):
-                self.command += f' -v {volume}'
-
-    def add_ports(self, ports):
-        if ports:
-            for port in ports.split(' '):
-                self.command += f' -p {port}'
+    def add_list_params(self, params_list):
+        if params_list:
+            for params in params_list:
+                for param in params:
+                    self.command += param
 
     def add_commands(self, commands):
         self.command += f' /bin/bash -c "{commands}"'
@@ -38,20 +34,39 @@ def run_command(command, args, config):
         print('Container build is failed')
         sys.exit(1)
 
+    params_list = get_params_list(command_desc)
     docker_run_command(
         command_container,
         command_desc['cmd'],
-        command_desc.get('volumes'),
-        command_desc.get('ports'),
+        params_list,
         args.docker_commands,
     )
+
+
+def get_params(param, config):
+    params = config.get(param['dsl_name'])
+    if not params:
+        return
+
+    # This is how we get them from yaml
+    params = params.split(' ')
+    return [param['docker_command'].format(p) for p in params]
+
+
+def get_params_list(config):
+    PARAMS = (
+        {'dsl_name': 'volumes', 'docker_command': ' -v {}'},
+        {'dsl_name': 'ports', 'docker_command': ' -p {}'},
+        {'dsl_name': 'envs', 'docker_command': ' -e {}'},
+    )
+    params_list = [get_params(p, config) for p in PARAMS]
+    return [p for p in params_list if p]
 
 
 def docker_run_command(
         container_name,
         command,
-        volumes,
-        ports,
+        params_list,
         docker_params
 ):
     commands = command.strip('\n').split('\n')
@@ -59,8 +74,7 @@ def docker_run_command(
 
     docker_command = Command(f'docker run -it --rm')
     docker_command.add_docker_params(docker_params)
-    docker_command.add_volumes(volumes)
-    docker_command.add_ports(ports)
+    docker_command.add_list_params(params_list)
     docker_command.add_name(container_name)
     docker_command.add_commands(formatted_commands)
 

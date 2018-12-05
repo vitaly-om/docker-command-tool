@@ -41,8 +41,12 @@ commands:
 
   run:
     container: app-container
+    volumes:
+      /your-machine/verywow:/docker/verywow
     ports:
       5000:5000
+    envs:
+      MY_SUPREME_ENV='my_env'
     cmd: |
       FLASK_APP=run.py python -m flask run
 ```
