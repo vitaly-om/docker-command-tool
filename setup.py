@@ -6,7 +6,7 @@ setup(
     install_requires=[
         'pyyaml==3.11',
     ],
-    version='0.0.4',
+    version='0.0.5',
     description='Docker command tool',
     author='Vitalii Omelchenko',
     author_email='vitaly.om25@gmail.com',
