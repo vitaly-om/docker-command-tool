@@ -58,6 +58,7 @@ def get_params_list(config):
         {'dsl_name': 'volumes', 'docker_command': ' -v {}'},
         {'dsl_name': 'ports', 'docker_command': ' -p {}'},
         {'dsl_name': 'envs', 'docker_command': ' -e {}'},
+        {'dsl_name': 'network', 'docker_command': ' --network {}'},
     )
     params_list = [get_params(p, config) for p in PARAMS]
     return [p for p in params_list if p]
