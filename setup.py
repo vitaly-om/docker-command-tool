@@ -4,7 +4,7 @@ setup(
     name='bagga',
     packages=find_packages(),
     install_requires=[
-        'pyyaml==3.11',
+        'pyyaml==5.1',
     ],
     version='0.0.6',
     description='Docker command tool',
