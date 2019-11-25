@@ -19,7 +19,7 @@ Example of dct.yaml:
 ```yaml
 containers:
   static-container: |
-    FROM node:8
+    FROM node:10
     RUN echo 'some actions'
     
   app-container: |
